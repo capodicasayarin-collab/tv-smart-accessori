@@ -93,7 +93,7 @@
               <option value="all">Tutti i Prodotti</option>
               <option value="tv">Smart TV</option>
               <option value="audio">Soundbar & Audio</option>
-              <option value="accessory">Accessori & Dongle</option>
+              <option value="accessory">Accessori</option>
             </select>
           </div>
 
@@ -126,6 +126,9 @@
               <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
                 <input type="checkbox" value="LED" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> LED
               </label>
+              <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
+                <input type="checkbox" value="RGB" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> LED
+              </label>
             </div>
           </div>
 
@@ -148,3 +151,24 @@
             <label class="text-xs text-slate-400">Ordinamento:</label>
             <select id="sortOrder" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none">
               <option value="
+
+
+// DATI PRODOTTI CATALOGO
+const products = [
+  {
+    id: 1,
+    title: "LG OLED evo C3 55\" Smart TV 4K",
+    category: "tv",
+    brand: "LG",
+    price: 1299,
+    rating: 4.8,
+    reviews: 320,
+    size: "55",
+    tech: "OLED",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80",
+    asin: "B0BVXBXXXX",
+    features: ["Processore α9 Gen6", "Dolby Vision & Atmos", "120Hz G-Sync & FreeSync"]
+  },
+  // ... altri prodotti
+];
+
