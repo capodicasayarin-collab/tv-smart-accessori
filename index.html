@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart TV & Accessori - Guida all'Acquisto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .glass-effect {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+
+  <!-- BARRA TAG AFFILIATO AMAZON -->
+  <div class="bg-amber-500 text-slate-950 px-4 py-2 text-xs md:text-sm font-semibold shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-tag text-base"></i>
+        <span>Configura ID Affiliato Amazon:</span>
+      </div>
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <input type="text" id="tagInput" value="smarttv-21" placeholder="erroridipr035-21" class="px-3 py-1 text-xs rounded bg-slate-900 text-white border border-amber-400 focus:outline-none focus:ring-2 focus:ring-slate-950">
+        <button onclick="updateTag()" class="bg-slate-950 text-amber-400 px-3 py-1 text-xs rounded hover:bg-slate-800 transition font-bold">Applica</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="sticky top-0 z-40 glass-effect border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+          <i class="fa-solid fa-tv text-lg"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">SmartTV<span class="text-sky-400">Hub</span></h1>
+          <p class="text-[10px] text-slate-400 font-medium">Guida & Offerte Amazon</p>
+        </div>
+      </div>
+      
+      <button onclick="openCalcModal()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-sky-400 px-3.5 py-2 rounded-xl border border-slate-700 text-xs font-semibold transition shadow-sm">
+        <i class="fa-solid fa-ruler-horizontal"></i>
+        <span class="hidden sm:inline">Calcola Distanza TV</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-12 px-4 overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-4">
+        <i class="fa-solid fa-bolt"></i> Offerte & Selezione Migliori Smart TV
+      </span>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+        Trova la Smart TV e gli Accessori Perfetti per la tua Casa
+      </h2>
+      <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-8">
+        Confronta i modelli top di gamma, trova i Soundbar e Supporti da parete compatibili e acquista al miglior prezzo direttamente su Amazon.
+      </p>
+
+      <!-- BARRA DI RICERCA -->
+      <div class="relative max-w-xl mx-auto">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Cerca TV OLED, QLED, Soundbar, Fire Stick..." class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition text-sm shadow-xl">
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT WITH FILTERS -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- FILTRI SIDEBAR -->
+      <aside class="space-y-6">
+        <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 space-y-6 sticky top-24">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+            <h3 class="font-bold text-slate-200 text-sm uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-sky-400"></i> Filtri
+            </h3>
+            <button onclick="resetFilters()" class="text-xs text-sky-400 hover:underline">Azzera</button>
+          </div>
+
+          <!-- Categoria -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Categoria</label>
+            <select id="categoryFilter" onchange="applyFilters()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+              <option value="all">Tutti i Prodotti</option>
+              <option value="tv">Smart TV</option>
+              <option value="audio">Soundbar & Audio</option>
+              <option value="accessory">Accessori & Dongle</option>
+            </select>
+          </div>
+
+          <!-- Pollici TV -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Dimensione Schermo</label>
+            <select id="sizeFilter" onchange="applyFilters()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+              <option value="all">Tutte le dimensioni</option>
+              <option value="43">43 Pollici</option>
+              <option value="50">50 Pollici</option>
+              <option value="55">55 Pollici</option>
+              <option value="65">65 Pollici</option>
+              <option value="75">75+ Pollici</option>
+            </select>
+          </div>
+
+          <!-- Tecnologia Pannello -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tecnologia Pannello</label>
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
+                <input type="checkbox" value="OLED" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> OLED
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
+                <input type="checkbox" value="QLED" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> QLED
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
+                <input type="checkbox" value="Mini-LED" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> Mini-LED
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer hover:text-white text-slate-300">
+                <input type="checkbox" value="LED" class="tech-checkbox rounded bg-slate-950 border-slate-800 text-sky-500 focus:ring-0" onchange="applyFilters()"> LED
+              </label>
+            </div>
+          </div>
+
+          <!-- Filtro Prezzo Max -->
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400 uppercase tracking-wider font-semibold">Prezzo Max</span>
+              <span id="priceLabel" class="text-sky-400 font-bold">2500 €</span>
+            </div>
+            <input type="range" id="priceRange" min="30" max="2500" step="50" value="2500" oninput="updatePriceLabel(); applyFilters()" class="w-full accent-sky-500 bg-slate-950 rounded-lg">
+          </div>
+        </div>
+      </aside>
+
+      <!-- GRIGLIA PRODOTTI -->
+      <section class="lg:col-span-3">
+        <div class="flex items-center justify-between mb-6">
+          <p class="text-xs text-slate-400"><span id="productCount" class="font-bold text-white">0</span> Prodotti Trovati</p>
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-400">Ordinamento:</label>
+            <select id="sortOrder" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none">
+              <option value="
